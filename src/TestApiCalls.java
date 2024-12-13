@@ -6,12 +6,8 @@ import java.util.Base64;
 
 public class TestApiCalls {
     public static void main(String[] args) {
-        String username = "group7";
-        String password = "0R8PHcpsJYIjNZ";
-
-        String auth = username + ":" + password; // vorbereitung unserer basic authentication: username doppelpunkt passwort ohne leerzeichen
-        String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes()); // basic authentication heißt der auth string wird ins base64 format gebracht
-        String authHeader = "Basic " + encodedAuth; // der "kopf" unserer api-request lautet jetzt "Basic <base64code>". das "Basic" und das leerzeichen vor dem base64 string sind dabei wichtig
+        String apiKey = "efc9ed5d3832c3fd8a42025f5883e23173f02907";
+        String authHeader = "Token " + apiKey; // der "kopf" unserer api-request lautet jetzt "Basic <base64code>". das "Basic" und das leerzeichen vor dem base64 string sind dabei wichtig
 
         HttpClient client = HttpClient.newHttpClient(); // objektorientiert einen neuen client für http requests erzeugen
 
