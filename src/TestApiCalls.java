@@ -18,10 +18,17 @@ public class TestApiCalls {
                 .build();
 
         HttpRequest oneDrone = HttpRequest.newBuilder() //zweite http-get-request für eine drone vorbereiten
-                .uri(URI.create("http://dronesim.facets-labs.com/api/drones/62/"))
+                .uri(URI.create("http://dronesim.facets-labs.com/api/drones/91/"))
                 .header("Authorization", authHeader)
                 .GET()
                 .build();
+
+        HttpRequest droneDynamics = HttpRequest.newBuilder() //zweite http-get-request für eine drone vorbereiten
+                .uri(URI.create("http://dronesim.facets-labs.com/api/dronedynamics/91/"))
+                .header("Authorization", authHeader)
+                .GET()
+                .build();
+
         try { // hier probieren wir die abfragen
             System.out.println("Sending first request in 5 sec");
             Thread.sleep(5000);
@@ -35,6 +42,12 @@ public class TestApiCalls {
             HttpResponse<String> oneDroneResponse = client.send(oneDrone, HttpResponse.BodyHandlers.ofString());
             System.out.println("Status: " + oneDroneResponse.statusCode());
             System.out.println("Response: " + oneDroneResponse.body());
+            System.out.println("Wait 5 sec...");
+            Thread.sleep(5000);
+            System.out.println("Send Drone Dynamics Request");
+            HttpResponse<String> droneDynamicRequest = client.send(droneDynamics, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Status: " + droneDynamicRequest.statusCode());
+            System.out.println("Response: " + droneDynamicRequest.body());
         } catch (Exception e) { // hier fangen wir fehler ab
             e.printStackTrace();
         }

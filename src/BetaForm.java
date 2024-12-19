@@ -50,7 +50,6 @@ public class BetaForm {
     }
 
     public static void main(String[] args) {
-        // JFrame erstellen und anzeigen
         JFrame frame = new JFrame("BetaForm");
         frame.setContentPane(new BetaForm().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
