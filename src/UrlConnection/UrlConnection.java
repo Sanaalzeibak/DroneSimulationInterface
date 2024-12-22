@@ -23,6 +23,7 @@ public class UrlConnection {
         String urlWithParams = BASE_URL + endpoint + "?limit=" + URLEncoder.encode(String.valueOf(limit), StandardCharsets.UTF_8)
                 + "&offset=" + URLEncoder.encode(String.valueOf(offset), StandardCharsets.UTF_8);
 
+        try {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -31,11 +32,29 @@ public class UrlConnection {
                 .uri(URI.create(urlWithParams)) // URL mit Parametern
                 .build();
 
-        try {
+
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println("Response code: " + response.statusCode());
             System.out.println("Response body: " + response.body());
-            return response.body();
+
+            int statusCode = response.statusCode();
+            if (statusCode >= 200 && statusCode < 300) {
+                // Success: Return the response body
+                System.out.println("Response code: " + statusCode);
+                System.out.println("Response body: " + response.body());
+                return response.body();
+            } else if (statusCode >= 400 && statusCode < 500) {
+                // Client error
+                System.err.println("Client Error: " + statusCode + " - " + response.body());
+            } else if (statusCode >= 500) {
+                // Server error
+                System.err.println("Server Error: " + statusCode + " - " + response.body());
+            } else {
+                // Unexpected status code
+                System.err.println("Unexpected Response Code: " + statusCode + " - " + response.body());
+            }
+
+
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
