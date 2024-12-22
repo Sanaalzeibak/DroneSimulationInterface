@@ -54,7 +54,7 @@ public class TestApiCalls {
             */
 
 
-            APIResponse apiResponse = APIResponse.fromJson(allDronesResponse.body());
+            AllDronesResponse apiResponse = AllDronesResponse.fromJson(allDronesResponse.body());
             //api response ist eine klasse passend für json objekte, count etc kann direkt verarbeitet werden, drones werden innerhalb des objekts belegt
             System.out.println("Anzahl der Dronen: " + apiResponse.getCount());
 

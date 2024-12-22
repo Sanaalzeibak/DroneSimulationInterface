@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class APIResponse {
+public class AllDronesResponse {
     private int count;
     private String next;
     private String previous;
@@ -44,8 +44,8 @@ public class APIResponse {
     }
 
     // Methode zum Erstellen eines ApiResponse-Objekts aus einem JSON-String
-    public static APIResponse fromJson(String jsonResponse) {
-        APIResponse apiResponse = new APIResponse();
+    public static AllDronesResponse fromJson(String jsonResponse) {
+        AllDronesResponse apiResponse = new AllDronesResponse();
 
         // JSON-Objekt erstellen
         JSONObject jsonObject = new JSONObject(jsonResponse);
