@@ -26,3 +26,4 @@ replay_pid*
 .idea
 out
 JavaProject.iml
+.DS_Store
